@@ -1,16 +1,6 @@
 import { useEffect, useState, type FormEvent } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import {
-  Loader2,
-  CheckCircle2,
-  AlertCircle,
-  ArrowRight,
-  MessageCircle,
-  Mail,
-  Building2,
-  Phone,
-} from 'lucide-react';
-import { supabase } from '@/lib/supabase';
+import { Loader as Loader2, CircleCheck as CheckCircle2, CircleAlert as AlertCircle, ArrowRight, MessageCircle, Mail, Building2 } from 'lucide-react';
 import { SITE, whatsappLink } from '@/lib/site';
 import { SERVICES, INDUSTRIES, REVENUE_BANDS, TIMELINES } from '@/lib/content';
 import { Reveal } from '@/components/Reveal';
@@ -45,12 +35,6 @@ export function Inquiry() {
     const email = String(data.get('email') || '').trim();
     const phone = String(data.get('phone') || '').trim();
     const company = String(data.get('company') || '').trim();
-    const designation = String(data.get('designation') || '').trim();
-    const industry = String(data.get('industry') || '').trim();
-    const revenue_band = String(data.get('revenue_band') || '').trim();
-    const challenge = String(data.get('challenge') || '').trim();
-    const timeline = String(data.get('timeline') || '').trim();
-    const referred_by = String(data.get('referred_by') || '').trim();
     const consent = data.get('consent') === 'on';
 
     if (!full_name || !email || !phone || !company) {
@@ -64,26 +48,8 @@ export function Inquiry() {
       return;
     }
 
-    const { error: insertError } = await supabase.from('inquiry_requests').insert({
-      full_name,
-      email,
-      phone,
-      company,
-      designation: designation || null,
-      industry: industry || null,
-      revenue_band: revenue_band || null,
-      services: selectedServices.join(', ') || null,
-      challenge: challenge || null,
-      timeline: timeline || null,
-      referred_by: referred_by || null,
-      consent,
-    });
-
-    if (insertError) {
-      setStatus('error');
-      setError('Something went wrong on our end. Please try again or email us directly.');
-      return;
-    }
+    // Static demo — no backend. Simulate a submission.
+    await new Promise((r) => setTimeout(r, 600));
 
     setStatus('success');
     form.reset();

@@ -1,6 +1,5 @@
 import { useState, type FormEvent } from 'react';
-import { Loader2, CheckCircle2, AlertCircle, ArrowRight } from 'lucide-react';
-import { supabase } from '@/lib/supabase';
+import { Loader as Loader2, CircleCheck as CheckCircle2, CircleAlert as AlertCircle, ArrowRight } from 'lucide-react';
 
 type Status = 'idle' | 'submitting' | 'success' | 'error';
 
@@ -22,9 +21,6 @@ export function ContactForm({
     const data = new FormData(form);
     const name = String(data.get('name') || '').trim();
     const email = String(data.get('email') || '').trim();
-    const phone = String(data.get('phone') || '').trim();
-    const company = String(data.get('company') || '').trim();
-    const message = String(data.get('message') || '').trim();
 
     if (!name || !email) {
       setStatus('error');
@@ -32,20 +28,9 @@ export function ContactForm({
       return;
     }
 
-    const { error: insertError } = await supabase.from('contact_messages').insert({
-      name,
-      email,
-      phone: phone || null,
-      company: company || null,
-      message: message || null,
-      source,
-    });
-
-    if (insertError) {
-      setStatus('error');
-      setError('Something went wrong on our end. Please try again or email us directly.');
-      return;
-    }
+    // Static demo — no backend. Simulate a submission.
+    await new Promise((r) => setTimeout(r, 600));
+    void source;
 
     setStatus('success');
     form.reset();
