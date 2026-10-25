@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    @apply bg-cream-50 text-navy-900 font-sans antialiased;
+    font-feature-settings: 'ss01', 'cv01';
+  }
+  ::selection {
+    @apply bg-gold-200 text-navy-900;
+  }
+}
+
+@layer components {
+  .container-q {
+    @apply mx-auto w-full max-w-8xl px-6 sm:px-8 lg:px-12;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-navy-900 px-6 py-3.5 text-sm font-medium text-cream-50 transition-all duration-300 hover:bg-navy-800 hover:shadow-lg hover:shadow-navy-900/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-cream-50;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-navy-200 bg-transparent px-6 py-3.5 text-sm font-medium text-navy-900 transition-all duration-300 hover:border-navy-900 hover:bg-navy-900 hover:text-cream-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-cream-50;
+  }
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-gold-400 px-6 py-3.5 text-sm font-medium text-navy-950 transition-all duration-300 hover:bg-gold-300 hover:shadow-lg hover:shadow-gold-400/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-cream-50;
+  }
+  .eyebrow {
+    @apply text-xs font-medium uppercase tracking-[0.22em] text-gold-600;
+  }
+  .heading-serif {
+    @apply font-serif font-medium tracking-tightest;
+  }
+  .reveal {
+    opacity: 0;
+  }
+  .reveal.is-visible {
+    animation: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+}
+
+/* Thin divider rule */
+.rule {
+  @apply h-px w-full bg-navy-200/60;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f9f6ee;
+}
+::-webkit-scrollbar-thumb {
+  background: #aeb8d4;
+  border-radius: 9999px;
+  border: 2px solid #f9f6ee;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #7f8fb4;
+}
